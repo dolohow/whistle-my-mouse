@@ -6,6 +6,10 @@
 #include <QMenu>
 #include <QCloseEvent>
 #include <QAction>
+#include <QAudioRecorder>
+#include <QAudioProbe>
+#include <QAudioBuffer>
+#include <QButtonGroup>
 
 namespace Ui {
 class Widget;
@@ -24,15 +28,23 @@ protected:
 
 private slots:
     void iconActivated(QSystemTrayIcon::ActivationReason reason);
+    void onStateChanged(QMediaRecorder::State state, QAbstractButton *button);
+    void toggleRecord();
+    void updateProgress(qint64 duration);
 
 private:
     void createTrayIcon();
-    void createActions();
+    void createAudioRecorder();
+    void createDeviceList();
+    void createRecordButtonsGroup();
 
     Ui::Widget *ui;
 
     QSystemTrayIcon *trayIcon;
     QMenu *trayMenu;
+    QAudioRecorder *audioRecorder;
+    QAudioProbe *probe;
+    QButtonGroup *recordButtons;
 
     QAction *quitAction;
 };
