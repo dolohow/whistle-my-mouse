@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,3 +18,8 @@ SOURCES += main.cpp\
 HEADERS  += widget.h
 
 FORMS    += widget.ui
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/lib/ -llibqrealfourier
+
+INCLUDEPATH += $$PWD/include
+DEPENDPATH += $$PWD/include
